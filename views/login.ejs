@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <link rel="stylesheet" href="../css/login.css">
+</head>
+
+<body>
+    <%- include('navbar')%>
+
+    <section>
+        <div class="container">
+            <div class="center_right">
+                <form action="/user/login" method="POST" class="login-form">
+                    <p><%- Message%></p>
+                    <h3>Login</h3>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Email address</label>
+                        <input name="email" type="email" class="form-control" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Password</label>
+                        <input name="password" type="password" class="form-control" id="exampleInputPassword1" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary login-btn">LOGIN</button>
+
+                    <p class="disclaimer">By logging in to your account, you automatically accepts the old store terms and conditions and its privacy policy.</p>
+                    <a href="/user/forgotpass" class="forgotpass">Forgot password?</a><br>
+                    <h5>Are you here for first time?</h5>
+                    <a href="/user/register"><div class="registerBtn">Click here to register</div></a>
+                    <a href="/user/adminlogin"><div class="registerBtn">Click here to Login as Admin</div></a>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <%- include('footer')%>
+</body>
+
+</html>

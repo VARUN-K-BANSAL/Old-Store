@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+</head>
+
+<body>
+    <%- include('sideNavbar')%>
+        <h2>Admin Dashboard</h2>
+        <div class="row">
+            <div class="brief-colm">
+                <h3>Number of Orders</h3>
+                <p id="orders"></p>
+            </div>
+            <div class="brief-colm">
+                <h3>Number of Users</h3>
+                <p id="users"></p>
+            </div>
+            <div class="brief-colm">
+                <h3>Number of Admins</h3>
+                <p id="admins"></p>
+            </div>
+        </div>
+
+        <section class="tabsSection">
+            <div class="tab">
+                <button class="tabLinks active" onclick="tabChange(event, 'unsolved')">Unsolved</button>
+                <button class="tabLinks" onclick="tabChange(event, 'solved')">Solved</button>
+                <!-- <button class="tabLinks" onclick="tabChange(event, 'courses')">Courses</button>
+                <button class="tabLinks" onclick="tabChange(event, 'admins')">Admins</button> -->
+            </div>
+            <div class="tabContent" id="unsolved" style="display: block;">
+                <div class="search_std">
+                    <input type="text" name="unsolvedInput" id="unsolvedInput"
+                        placeholder="Enter name or email or roll number" onkeyup="checkStudent()">
+                </div>
+                <div class="table_container">
+                    <table id="unsolvedTable">
+                        <thead>
+                            <tr>
+                                <th>Reporter</th>
+                                <th>Accused</th>
+                                <th>Report</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="tabContent" id="solved">
+                <div class="search_std">
+                    <input type="text" name="teacherInput" id="teacherInput" placeholder="Enter name or email"
+                        onkeyup="checkTeacher()">
+                </div>
+                <div class="table_container">
+                    <table id="solvedTable">
+                        <thead>
+                            <tr>
+                                <th>Reporter</th>
+                                <th>Accused</th>
+                                <th>Report</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- this extra div closing is for sidenavbar main class -->
+        </div>
+
+        <%- include('footer')%>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+            <script src="/scripts/admin.js"></script>
+</body>
+
+</html>

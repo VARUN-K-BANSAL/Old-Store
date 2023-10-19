@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        img {
+            width: 200px;
+            height: 200px;
+        }
+
+        .card {
+            width: 200px;
+            height: 300px;
+        }
+
+        .sent {
+            color: green;
+        }
+
+        .received {
+            color: blue;
+        }
+
+        .chat {
+            width: 90%;
+            padding: 20px;
+            box-sizing: border-box;
+            margin: 10px;
+            box-shadow: 0 0 5px #000;
+            color: #000;
+        }
+
+        a {
+            text-decoration: none !important;
+        }
+    </style>
+</head>
+<body>
+    <%- include('navbar')%>
+    <div id="chatsContainer">
+
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../scripts/checkLogin.js"></script>
+    <script>
+        $(document).ready(function() {
+            $.getJSON('/user/getChats', function(data) {
+                let i = 0;
+                while(data[i] != undefined) {
+                    const newDiv = `
+                        <a href='/user/chat/${data[i].userId}'>
+                            <div id="chat-${data[i].userId}" class="chat">
+                            </div>
+                        </a>
+                    `
+                    $('#chatsContainer').append(newDiv);
+                    $.getJSON(`/user/getUser/${data[i].userId}`, function (user) {
+                        const newUser = `
+                            <h6>${user.name}</h6>
+                            <h6>${user.email}</h6>
+                        `
+                        $(`#chat-${user._id}`).append(newUser)
+                    })
+                    i++
+                }
+            })
+        })
+    </script>
+</body>
+</html>

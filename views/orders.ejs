@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        img {
+            width: 200px;
+            height: 200px;
+        }
+
+        .card {
+            width: 200px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <%- include('navbar')%>
+
+    <a href="/products/add">Add Product</a><br><br>
+    <a href="/user/cart">View Cart</a><br><br>
+    <a href="/user/orders">View Orders</a>
+    <div id="productsContainer">
+
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../scripts/checkLogin.js"></script>
+    <script>
+        $(document).ready(function() {
+            $.getJSON('/order/all', async function(data) {
+                let k = 0;
+                while(data[k] != undefined) {
+                    let newRow = `
+                    <div id="${data[k]._id.toString()}">
+                        <p>Status : ${data[k].status}</p>
+                        <a href="/order/cancel/${data[k]._id.toString()}"><button>Cancel Order</button></a>
+                    </div>
+                    `
+                    $('#productsContainer').append(newRow)
+                    let i = 0;
+                    while(data[k].products[i] !== undefined) {
+                        let product
+                        await $.getJSON(`/products/detailApi/${data[k].products[i].productId}`, function(prodData) {
+                            product = prodData
+                        })
+                        let newPro = `
+                        <a href="/products/detail/${product._id}">
+                            <div class="card" id="${product._id}">
+                                <img class="card-img-top" src="data:image/png;base64,${product.img}" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">${product.title}</h5>
+                                    <p class="card-text">${product.desc}</p>
+                                </div>
+                                <div class="card-footer">
+                                    <small class="text-muted">${product.price}</small>
+                                </div>
+                            </div>
+                            <p>Quantity : ${data[k].products[i].quantity}</p>
+                        </a>
+                        `
+                        $(`#${data[k]._id}`).append(newPro)
+                        i++
+                    }
+                    k++
+                }
+            })
+        })
+
+    </script>
+</body>
+</html>

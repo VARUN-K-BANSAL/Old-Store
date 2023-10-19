@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+
+    <link rel="stylesheet" href="../css/login.css">
+</head>
+
+<body>
+    <%- include('navbar')%>
+
+    <section>
+        <div class="container">
+            <div class="center_right">
+                <form action="payment" method="POST">
+                    <script
+                       src="//checkout.stripe.com/v2/checkout.js"
+                       class="stripe-button"
+                       data-key="<%= key %>"
+                       data-amount="<%= amount%>"
+                       data-currency="inr"
+                       data-name="OLD STORE"
+                       data-description="E-Marketplace for used stuff"
+                       data-locale="auto" >
+                     </script>
+                 </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="foot" id="contact">
+        <p>&copy; 2022 - oldstore.com</p>
+    </footer>
+</body>
+
+</html>

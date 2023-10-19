@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css"
+        integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/profile.css">
+    <script src="../scripts/register.js"></script>
+</head>
+
+<body>
+    <%- include('navbar')%>
+    <div class="container">
+        <div class="main">
+            <section class="brief">
+                <div class="row">
+                    <div class="brief-colm">
+                        <form action="/update" method="post">
+                            <h1>Your Profile</h1>
+                            <div class="txt_field">
+                                <label>Full Name</label>
+                                <input type="text" name="full_name" id="full_name" required
+                                    value="<%=name %>">
+                            </div>
+                            <div class="txt_field">
+                                <label>Email</label><br>
+                                <input type="email" name="email
+                                    id="email" required value="<%=email %>">
+                            </div>
+                            <div class="txt_field">
+                                <label>Batch</label><br>
+                                <input type="number" name="batch"
+                                    id="email" required value="<%=email %>">
+                            </div>
+                            <div class="txt_field">
+                                <label>Current Password</label><br>
+                                <span></span>
+                                <input type="password" name="curr_password" id="curr_pass" required>
+                            </div>
+                            <div class="txt_field">
+                                <label>New Password</label><br>
+                                <span></span>
+                                <input type="password" name="new_password" onchange="check_pass()"
+                                    id="pass" required>
+                            </div>
+                            <div class="txt_field">
+                                <label>Confirm Password</label><br>
+                                <span></span>
+                                <input type="password" name="cn_password" onchange="conf_pass()" 
+                                    id="c_pass" required>
+                            </div>
+                            <input type="submit" value="Update">
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+
+</html>

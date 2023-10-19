@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Product</title>
+    <link rel="stylesheet" href="../css/login.css">
+</head>
+
+<body>
+    <%- include('navbar')%>
+    <div class="main_container">
+        <div class="center_left">
+
+        </div>
+        <div class="center_right">
+            <form action="/products/add" method="post">
+                <h1>Add New Product</h1>
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input name="title" type="text" class="form-control" id="title" required>
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <input name="description" type="text" class="form-control" id="description" required>
+                </div>
+                <div class="mb-3">
+                    <label for="price" class="form-label">Price</label>
+                    <input name="price" type="number" class="form-control" id="price" required>
+                </div>
+                <div class="mb-3">
+                    <label for="tags" class="form-label">Tags</label>
+                    <input name="tags" type="textarea" class="form-control" id="tags" required>
+                </div>
+                <div class="mb-3">
+                    <label for="productImage" class="form-label">Add Image</label>
+                    <input name="Files" type="file" accept=".png,.jpg,.jpeg" class="form-control" id="fl2" onchange="imageUpload()" required>
+                </div>
+
+                <input type="text" style="display: none;" id="encodedImage" name="encodedImage" required>
+                <button type="submit" class="btn btn-primary">Add Product</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../../scripts/checkLogin.js"></script>
+    <script src="../../scripts/addProduct.js"></script>
+</body>
+
+</html>

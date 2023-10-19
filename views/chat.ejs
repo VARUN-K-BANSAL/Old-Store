@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        img {
+            width: 200px;
+            height: 200px;
+        }
+
+        .card {
+            width: 200px;
+            height: 300px;
+        }
+
+        .sent {
+            color: green;
+        }
+
+        .received {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <%- include('navbar')%>
+    <div id="chatsContainer">
+
+    </div>
+    <form action="/user/chat/<%- id%>" method="post">
+        <input type="text" name="message" id="message" placeholder="Message" autocomplete required>
+        <button type="submit">Send</button>
+    </form>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../../scripts/checkLogin.js"></script>
+    <script>
+        $(document).ready(function() {
+            $.getJSON('/user/getChats/<%- id%>', function(data) {
+                let i = 0;
+                while(data.messages[i] != undefined) {
+                    if(data.messages[i].isSent) {
+                        let newMessage = `
+                            <p class="sent">${data.messages[i].message}</p>
+                        `
+                        $('#chatsContainer').append(newMessage)
+                    } else {
+                        let newMessage = `
+                            <p class="received">${data.messages[i].message}</p>
+                        `
+                        $('#chatsContainer').append(newMessage)
+                    }
+                    i++
+                }
+            })
+        })
+    </script>
+</body>
+</html>

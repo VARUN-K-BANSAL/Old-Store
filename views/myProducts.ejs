@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        img {
+            width: 200px;
+            height: 200px;
+        }
+
+        .mainContainer {
+            display: flex;
+            justify-content: center;
+            background-color: white;
+            min-height: 100vh;
+        }
+
+        .productsContainer {
+            width: 90vw;
+            /* min-height: 100vh; */
+            background-color: transparent;
+            display: block;
+            row-gap: 20px;
+            column-gap: 10px;
+        }
+
+        a {
+            text-decoration: none !important;
+        }
+
+        .product > img {
+            object-fit: contain;
+        }
+        
+        .productClass {
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 50px;
+            display: flex;
+            gap: 20px;
+            width: 90vw;
+            overflow: scroll;
+            object-fit: contain;
+            box-shadow: 0 0 0 1px rgba(200, 200, 200, 0.2),
+                        0 0 0 3px rgba(200, 200, 200, 0.2),
+                        0 0 0 4px rgba(200, 200, 200, 0.2),
+                        0 0 0 5px rgba(200, 200, 200, 0.2);
+        }
+
+        .product{
+            display: inline-block;
+            width: 300px;
+        }
+
+        .mainNav {
+            display: flex;
+            justify-content: space-around;
+        }
+    </style>
+</head>
+
+<body>
+    <%- include('navbar')%>
+    <!-- <section> -->
+        <div class="mainNav">
+            <a href="/products/add">Add Product</a><br><br>
+            <a href="/user/cart">View Cart</a><br><br>
+            <a href="/user/orders">View Orders</a><br><br>
+            <a href="/user/chats">View Chats</a>
+            <a href="/user/myproducts">My Products</a>
+        </div>
+        <div class="mainContainer">
+            <div id="productsContainer" class="productsContainer">
+    
+            </div>
+        </div>
+    <!-- </section> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="../scripts/checkLogin.js"></script>
+        <script src="../scripts/getMyProducts.js"></script>
+    <%- include('footer')%>
+</body>
+
+</html>
